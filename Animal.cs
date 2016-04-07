@@ -1,79 +1,211 @@
-class Animal {
-    public string AnimalName { get; set; }
+class Animal 
+{
+  public string AnimalName { get; set; }
+  public string Habitat { get; set; }
+  public string FavoriteFood { get; set; }
+  public bool Aquatic { get; set; }
+  public int Legs { get; set; }
 }
 
-class Species: Animal {
-    public string SpeciesName { get; set; }   
+// GENUS SHOULD NOT HAVE CONSTRUCTOR
+
+// PANTHERA GENUS
+class Panthera: Animal 
+{
+  public string SpeciesName { get; set; }
+  public string Noise { get; set; }
+  public int Teeth { get; set; } 
+  public virtual string SpecialFeature(){
+    return "not special";
+  }
 }
 
-class Elephant: Species {
-    public string Noise { get; set; }     
-    public int Legs { get; set; }
-    public bool Aquatic { get; set; }
-    public string FavoriteFood { get; set; }
+class Lion: Panthera 
+{
+  public string ColorOfMane { get; set; }  
 }
 
-class Dolphin: Species {
-    public string Noise { get; set; }     
-    public int Legs { get; set; }
-    public bool Aquatic { get; set; }
-    public string FavoriteFood { get; set; }
+class Tiger: Panthera 
+{
+  public int NumberOfStripes { get; set; }
+  public override string SpecialFeature() {
+    return "stripes";
+  }  
 }
 
-class Lion: Species {
-    public string Noise { get; set; }     
-    public int Legs { get; set; }
-    public bool Aquatic { get; set; }
-    public string FavoriteFood { get; set; }
+class Jaguar: Panthera 
+{
+  public int NumberOfSpots { get; set; } 
 }
 
-class RedPanda: Species {
-    public string Noise { get; set; }     
-    public int Legs { get; set; }
-    public bool Aquatic { get; set; }
-    public string FavoriteFood { get; set; }
+class Leopard: Panthera 
+{
+  public int NumberOfSpots { get; set; } 
+  public override string SpecialFeature() {
+    return "spots";
+  }  
 }
 
-Elephant Luna = new Elephant();
+Lion george = new Lion();
 
-Luna.SpeciesName = "Indian";
-Luna.Noise = "baraag";
-Luna.Legs = 4;
-Luna.Aquatic = false;
-Luna.FavoriteFood = "tree bark";
+george.SpeciesName = "Panthera";
+george.Noise = "rawr";
+george.ColorOfMane = "golden";
+george.Aquatic = false;
+george.Habitat = "safari";
+george.Legs = 4;
 
-Console.Write("I have an Elephant named Luna who makes a noise that sounds like {0}. Her favorite food is {1}.", Luna.Noise, Luna.FavoriteFood);
+Console.Write("I have a Lion named George who makes a noise that sounds like {0}. He lives in a {1}.", george.Noise, george.Habitat);
+
+Tiger tigger = new Tiger();
+Leopard lionel = new Leopard();
+
+Console.WriteLine(tigger.SpecialFeature());
+Console.WriteLine(lionel.SpecialFeature());
+
+// CHEETAH GENUS
+class Acinonyx: Animal 
+{
+  public string SpeciesName { get; set; }
+  public string Noise {get; set;}
+}
+
+class Cheetah: Acinonyx 
+{
+  public int NumberOfSpots { get; set; } 
+}
+
+// ELEPHAS GENUS
+class Elephas: Animal 
+{
+  public string SpeciesName { get; set; }
+  public string Noise {get; set;}
+}
+
+class AsianElephant: Elephas
+{
+  public string HomeContinent { get; set; } 
+}
+
+class AfricanElephant: Elephas
+{
+  public string HomeContinent { get; set; } 
+}
+
+AsianElephant luna = new AsianElephant();
+
+luna.SpeciesName = "Elephas";
+luna.Noise = "baraag";
+luna.Legs = 4;
+luna.Aquatic = false;
+luna.FavoriteFood = "tree bark";
+luna.HomeContinent = "Asia";
+
+Console.Write("I have an Asian Elephant named Luna who makes a noise that sounds like {0}. Her favorite food is {1}. She lives in {2}.", luna.Noise, luna.FavoriteFood, luna.HomeContinent);
 
 
-Dolphin Pearl = new Dolphin();
+// RED PANDA GENUS
+class Ailurus: Animal 
+{
+  public string SpeciesName { get; set; }
+  public string Noise {get; set;}
+}
 
-Pearl.SpeciesName = "Bottlenose";
-Pearl.Noise = "clickclickclick";
-Pearl.Legs = 0;
-Pearl.Aquatic = true;
-Pearl.FavoriteFood = "fish";
-
-Console.Write("I have an Dolphin named Pearl who makes a noise that sounds like {0}. Her favorite food is {1}.", Pearl.Noise, Pearl.FavoriteFood);
-
-
-Lion George = new Lion();
-
-George.SpeciesName = "African";
-George.Noise = "rawr";
-George.Legs = 4;
-George.Aquatic = false;
-George.FavoriteFood = "meat";
-
-Console.Write("I have an Lion named George who makes a noise that sounds like {0}. His favorite food is {1}.", George.Noise, George.FavoriteFood);
+class RedPanda: Ailurus 
+{
+  public int CutenessRating { get; set; }
+}
 
 
-RedPanda Ruby = new RedPanda();
+// PANDA GENUS
+class Ailuropoda: Animal
+{
+  public string SpeciesName { get; set; }
+  public string Noise {get; set;}
+}
 
-Ruby.SpeciesName = "Red Panda";
-Ruby.Noise = "squeak";
-Ruby.Legs = 4;
-Ruby.Aquatic = false;
-Ruby.FavoriteFood = "bamboo";
+class GiantPanda: Ailuropoda
+{
+  public string SpecialSkill { get; set; } 
+}
 
-Console.Write("I have an Red Panda named Ruby who makes a noise that sounds like {0}. Her favorite food is {1}.", Ruby.Noise, Ruby.FavoriteFood);
+
+// COMMON BEAR GENUS
+class Ursus: Animal 
+{
+  public string Noise { get; set; }     
+  public string SpeciesName { get; set; }
+  public bool FriendOfBaxter { get; set; } 
+}
+
+class PolarBear: Ursus 
+{
+ public bool DrinksCocaCola { get; set; } 
+}
+
+class KodiakBear: Ursus 
+{
+  public string FavoritePastime { get; set;}
+}
+
+class GrizzlyBear: Ursus 
+{
+  public string FavoriteTeam { get; set;}
+}
+
+
+// GIRAFFE GENUS
+class Giraffa: Animal 
+{
+  public string SpeciesName { get; set; }
+  public string Noise {get; set;}
+}
+
+class Giraffe: Giraffa 
+{
+  public int HeightRating { get; set; } 
+}
+
+
+// DOLPHIN GENUS
+class Cephalorhynchus: Animal 
+{
+  public string SpeciesName { get; set; }
+  public string Noise {get; set;}
+  public int Fins { get; set; }
+}
+
+class BlackDolphin: Cephalorhynchus
+{
+  public bool Chic { get; set; }
+}
+
+class CommersonsDolphin: Cephalorhynchus
+{
+  public bool Famous { get; set; }
+}
+
+
+
+
+
+
+// Dolphin Pearl = new Dolphin();
+
+// Pearl.SpeciesName = "Bottlenose";
+// Pearl.Noise = "clickclickclick";
+// Pearl.Legs = 0;
+// Pearl.Aquatic = true;
+// Pearl.FavoriteFood = "fish";
+
+// Console.Write("I have an Dolphin named Pearl who makes a noise that sounds like {0}. Her favorite food is {1}.", Pearl.Noise, Pearl.FavoriteFood);
+
+
+
+
+
+
+
+
+
 
